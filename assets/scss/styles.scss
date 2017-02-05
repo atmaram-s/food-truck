@@ -1,0 +1,27 @@
+@import './partials/variables';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font: $app-font;
+}
+
+body {
+    background-color: $body-bg;
+}
+
+md-toolbar.header {
+    background-color: $header-bg;
+    font-family: $title-font;
+    font-weight: bold;
+    padding: 10px;
+
+    .green-text {
+        color: $title-green;
+    }
+
+    .red-text {
+        color: $title-red;
+    }
+}

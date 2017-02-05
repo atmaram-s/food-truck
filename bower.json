@@ -1,0 +1,14 @@
+{
+  "name": "food-truck",
+  "authors": [
+    "atmaram-s"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/atmaram-s/food-truck",
+  "private": true,
+  "dependencies": {
+    "angular": "angularjs#^1.6.1",
+    "angular-route": "^1.6.1",
+    "angular-material": "^1.1.3"
+  }
+}

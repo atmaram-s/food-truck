@@ -1,0 +1,20 @@
+/* Fonts */
+/* Colours */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font: "Source Sans Pro", sans-serif; }
+
+body {
+  background-color: #d3d3d3; }
+
+md-toolbar.header {
+  background-color: #ffffff;
+  font-family: "Lobster Two", cursive;
+  font-weight: bold;
+  padding: 10px; }
+  md-toolbar.header .green-text {
+    color: #5bbd50; }
+  md-toolbar.header .red-text {
+    color: #e24425; }
