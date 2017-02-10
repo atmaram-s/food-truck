@@ -1,11 +1,18 @@
 /* Fonts */
-
 $app-font: 'Source Sans Pro', sans-serif;
 $title-font: 'Lobster Two', cursive;
 
 /* Colours */
-
-$body-bg: #d3d3d3;
-$header-bg: #ffffff;
-$title-green: #5bbd50;
+$white: #ffffff;
+$title-green: rgb(139,195,74);
 $title-red: #e24425;
+$light-gray: #e1e1e1;
+$shadow-gray: rgba(0, 0, 0, 0.1);
+$shadow-red: rgba(226, 68, 37, 0.5);
+$transparent: rgba(255, 255, 255, 0);
+
+/* Loader colours */
+$wheel:  #9E9E9E;
+$truck: rgb(139,195,74);
+$steam: #d3d3d3;
+$man: #616161;

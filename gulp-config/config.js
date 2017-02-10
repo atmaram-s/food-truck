@@ -4,6 +4,7 @@ module.exports = {
         css: 'assets/css',
         images: 'assets/images',
         js: 'src/scripts',
+        html: 'src/views',
         build: 'dist'
     }
 };

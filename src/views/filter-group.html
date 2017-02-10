@@ -1,0 +1,30 @@
+<div class="filter-group" ng-class="{ 'expand': filterGroup.expand }">
+      <div class="filter-group-autocomplete-container">
+            <md-autocomplete md-no-cache="true"
+                md-selected-item="filterGroup.selectedItem"
+                md-selected-item-change="filterGroup.addItem()"
+                md-search-text="filterGroup.searchText"
+                md-items="filter in filterGroup.querySearch(filterGroup.searchText)"
+                md-item-text="filter"
+                placeholder="Search for a food item">
+                    <span md-highlight-text="filterGroup.searchText">{{ filter }}</span>
+            </md-autocomplete>
+            <md-button class="md-fab md-mini filter-group-show-list"
+                  ng-disabled="!filterGroup.appliedFilters.length"
+                  ng-click="filterGroup.expand = !filterGroup.expand"
+                  aria-label="Show filter list">
+                  <md-icon md-svg-icon="assets/images/filter-icon.svg"></md-icon>
+            </md-button>
+      </div>
+      <ul class="filter-group-selected-list">
+            <li ng-repeat="item in filterGroup.appliedFilters track by $index">
+                  <md-button class="md-icon-button" aria-label="Delete item">
+                        <md-icon md-svg-icon="assets/images/close-icon.svg" ng-click="filterGroup.removeItem(item)"></md-icon>
+                  </md-button>
+                  <div class="text ellipsis-truncate">
+                        <md-tooltip md-direction="bottom">{{ item }}</md-tooltip>
+                        {{ item }}
+                  </div>
+            </li>
+      </ul>
+</div>

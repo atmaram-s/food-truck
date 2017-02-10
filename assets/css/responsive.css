@@ -1,0 +1,72 @@
+/* Fonts */
+/* Colours */
+/* Loader colours */
+@media (max-width: 768px) {
+  body {
+    font-size: 13px; }
+  header {
+    padding: 0 10px;
+    font-size: 18px;
+    height: 45px; }
+    header .location-name {
+      line-height: 45px;
+      padding-right: 30px; }
+      header .location-name:before {
+        width: 30px;
+        height: 40px; }
+  section {
+    height: calc(100% - 45px); }
+  /* Truck Map directive styles */
+  .truck-map {
+    position: relative; }
+    .truck-map-search-params {
+      padding-right: 15px;
+      padding-left: 3px; }
+    .truck-map-search-range {
+      margin-bottom: 15px; }
+    .truck-map-autocomplete-container, .truck-map-search-range {
+      width: 100%;
+      padding: 0; }
+    .truck-map-container, .truck-map-list-container {
+      width: 100%; }
+    .truck-map-and-list-container {
+      position: static;
+      height: calc(100% - 145px); }
+    .truck-map-list-container {
+      padding-right: 0;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 21;
+      background-color: #ffffff;
+      transition: top ease-in 0.3s;
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0); }
+      .truck-map-list-container.show {
+        top: 0; }
+    .truck-map .md-sidenav-right {
+      width: 100%; }
+    .truck-map .show-list {
+      display: block;
+      position: absolute;
+      z-index: 22;
+      right: 7%;
+      bottom: 20px; }
+      .truck-map .show-list:not([disabled]).md-focused, .truck-map .show-list:not([disabled]):hover {
+        background-color: #e24425; } }
+
+@media (max-width: 640px) {
+  .truck-map .show-list {
+    right: 9%; } }
+
+@media (max-width: 480px) {
+  .truck-map .show-list {
+    right: 12%; } }
+
+@media (max-width: 375px) {
+  .location-name .name {
+    display: none; } }
+
+@media (max-width: 360px) {
+  .truck-map .show-list {
+    right: 14%; } }

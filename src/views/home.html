@@ -1,8 +1,13 @@
-<div class="home" layout="column">
-    <md-toolbar layout="row" class="header">
+<div class="home full-height">
+    <header class="header">
         <h1><span class="green-text">What The</span> <span class="red-text"> Truck</span></h1>
-    </md-toolbar>
-    <section layout="row" flex>
-
+        <div class="location-name">
+            <md-tooltip md-direction="bottom">{{ locationName || 'Middle of Nowhere, Nowhere'}}</md-tooltip>
+            <div class="name">{{ locationName }} </div>
+        </div>
+    </header>
+    <loader ng-show="requestQueue.length"></loader>
+    <section>
+        <truck-map></truck-map>
     </section>
 </div>

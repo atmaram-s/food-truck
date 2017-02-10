@@ -1,0 +1,119 @@
+@import './partials/variables';
+@media (max-width: 768px) {
+    body {
+        font-size: 13px;
+    }
+
+    header {
+        padding: 0 10px;
+        font-size: 18px;
+        height: 45px;
+
+        .location-name {
+            line-height: 45px;
+            padding-right: 30px;
+
+            &:before {
+                width: 30px;
+                height: 40px;
+            }
+        }
+    }
+
+    section {
+        height: calc(100% - 45px);
+    }
+    /* Truck Map directive styles */
+    .truck-map {
+        position: relative;
+
+        &-search {
+            &-params {
+                padding-right: 15px;
+                padding-left: 3px;
+            }
+
+            &-range {
+                margin-bottom: 15px;
+            }
+        }
+
+        &-autocomplete-container,
+        &-search-range {
+            width: 100%;
+            padding: 0;
+        }
+
+        &-container,
+        &-list-container {
+            width: 100%;
+        }
+
+        &-and-list-container {
+            position: static;
+            height: calc(100% - 145px);
+        }
+
+        &-list-container {
+            padding-right: 0;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 21;
+            background-color: $white;
+            transition: top ease-in 0.3s;
+            transform: translate3d(0, 0, 0);
+
+            &.show {
+                top: 0;
+            }
+        }
+
+        .md-sidenav-right {
+            width: 100%;
+        }
+
+        .show-list {
+            display: block;
+            position: absolute;
+            z-index: 22;
+            right: 7%;
+            bottom: 20px;
+
+            &:not([disabled]) {
+                &.md-focused,
+                &:hover {
+                    background-color: $title-red;
+                }
+            }
+        }
+    }
+}
+@media (max-width: 640px) {
+    .truck-map {
+        .show-list {
+            right: 9%;
+        }
+    }
+}
+@media (max-width: 480px) {
+    .truck-map {
+        .show-list {
+            right: 12%;
+        }
+    }
+}
+
+@media (max-width: 375px) {
+    .location-name .name {
+        display: none;
+    }
+}
+
+@media (max-width: 360px) {
+    .truck-map {
+        .show-list {
+            right: 14%;
+        }
+    }
+}

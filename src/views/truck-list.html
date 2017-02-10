@@ -1,0 +1,31 @@
+<div class="truck-list">
+    <div class="truck-list-wrapper" ng-if="truckList.foodTrucks.length">
+      <filter-group dataset="truckList.filterList"
+          applied-filters="truckList.appliedFilters"
+          on-filter-list-changed="truckList.onFilterListChanged(operation)"></filter-group>
+      <div class="truck-list-container">
+          <md-virtual-repeat-container>
+              <md-list-item md-on-demand
+                  md-virtual-repeat="foodTruckDetail in truckList.dynamicItems"
+                  class="md-3-line truck-list-item card"
+                  ng-click="truckList.onItemClick({selectedTruck: foodTruckDetail})">
+                  <div class="md-list-item-text"
+                      layout="column">
+                      <div class="truck-list-title">{{ foodTruckDetail.applicant }}</div>
+                      <div class="truck-list-address list-subtext">{{ foodTruckDetail.address }}</div>
+                      <div class="truck-list-hours list-subtext">{{ foodTruckDetail.dayshours}}</div>
+                  </div>
+              </md-list-item>
+          </md-virtual-repeat-container>
+      </div>
+    </div>
+    <div class="truck-list-error error-card" ng-if="!truckList.foodTrucks.length && $root.locationName">
+        <p>Sorry Chief, </p>
+        <p ng-if="$root.locationName === 'Middle of Nowhere, Nowhere'">
+            No trucks to serve you in the Middle of Nowhere. Please search at a different place, or let us know where you live.
+        </p>
+        <p ng-if="$root.locationName !== 'Middle of Nowhere, Nowhere'">
+            No trucks serving at {{ $root.locationName }}. Might we suggest searching at San Fransisco, CA, or you could try widening the search range.
+        </p>
+    </div>
+</div>

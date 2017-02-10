@@ -1,0 +1,15 @@
+<div class="truck-detail">
+    <h2 class="truck-detail-title" ng-if="selectedTruck.applicant">{{ selectedTruck.applicant }}</h2>
+    <div class="truck-detail-address" ng-if="selectedTruck.address">{{ selectedTruck.address }}</div>
+    <div class="truck-detail-hours" ng-if="selectedTruck.dayshours">{{ selectedTruck.dayshours }}</div>
+    <md-list flex class="truck-detail-food-list" ng-if="selectedTruck.fooditems.length">
+        <h3>What's Cooking</h3>
+        <md-list-item class="truck-detail-food-list-item" ng-repeat="item in selectedTruck.fooditems">
+            <img class="md-avatar" src="assets/images/food-icon.svg" alt="Food icon">
+            <div>{{ item }}</div>
+        </md-list-item>
+    </md-list>
+    <md-whiteframe class="md-whiteframe-3dp">
+        <span>Well, the kitchen ran in to some trouble. I guess you can just call it a truck now.</span>
+    </md-whiteframe>
+</div>

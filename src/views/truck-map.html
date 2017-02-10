@@ -1,0 +1,46 @@
+<div class="truck-map" data-tap-disabled="true">
+    <div class="truck-map-search-container">
+        <div class="truck-map-search-params">
+            <div class="truck-map-autocomplete-container">
+                <input type="text" class="truck-map-autocomplete" ng-model="truckMap.inputLocation">
+            </div>
+            <div class="truck-map-search-range">
+                <div layout>
+                    <div class="slider-text" flex="10" layout layout-align="center center">
+                        <span class="md-body-1">Range(m)</span>
+                    </div>
+                    <md-slider flex
+                        class="md-primary"
+                        md-discrete
+                        ng-model="truckMap.searchRange"
+                        step="50" min="500"
+                        max="5000"
+                        aria-label="Search range">
+                    </md-slider>
+                </div>
+            </div>
+        </div>
+        <md-button class="md-fab truck-map-search" aria-label="Search" ng-disabled="truckMap.isSearchDisabled()" ng-click="truckMap.fetchData()">
+            <md-icon md-svg-src="assets/images/search-icon.svg"></md-icon>
+        </md-button>
+    </div>
+    <div class="truck-map-and-list-container">
+        <div class="truck-map-list-container" ng-class="{ 'show': truckMap.showList }">
+            <truck-list food-trucks="truckMap.foodTrucks"
+              on-item-click="truckMap.showTruckDetail(selectedTruck)"
+              on-list-changed="truckMap.updateTruckMarkers(newList)">
+            </truck-list>
+        </div>
+        <div class="truck-map-container"></div>
+        <md-sidenav class="md-sidenav-right" md-component-id="truckDetail" md-disable-backdrop="true">
+            <md-button class="md-icon-button close-detail" aria-label="Close detail" ng-click="truckMap.closeDetail()">
+                <md-icon md-svg-icon="assets/images/close-icon.svg"></md-icon>
+            </md-button>
+            <truck-detail selected-truck="truckMap.selectedTruck"></truck-detail>
+        </md-sidenav>
+    </div>
+    <md-button class="md-fab md-mini show-list" aria-label="Show list" ng-click="truckMap.showList = !truckMap.showList">
+        <md-icon md-svg-icon="assets/images/list-icon.svg" ng-hide="truckMap.showList"></md-icon>
+        <md-icon md-svg-icon="assets/images/down-arrow.svg" ng-show="truckMap.showList"></md-icon>
+    </md-button>
+</div>

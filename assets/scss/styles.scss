@@ -1,21 +1,90 @@
 @import './partials/variables';
+@mixin before-icon($url, $width, $height) {
+    content: " ";
+    display: block;
+    width: $width;
+    height: $height;
+    float: left;
+    margin-top: 8px;
+    background: url($url) no-repeat center center;
+}
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font: $app-font;
+    outline: none;
+}
+
+.full-height {
+    height: 100%;
+    overflow: hidden;
+}
+
+.ellipsis-truncate {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.center-vertical {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.card {
+    border-radius: 4px;
+    box-shadow: 0 1px 4px 0 $shadow-gray;
+    transition: 0.3s;
+
+    &:hover {
+        box-shadow: 0 8px 16px 0 $shadow-gray;
+    }
+}
+
+.error-card {
+    border-radius: 4px;
+    box-shadow: 0 4px 8px 0 $shadow-red;
+    padding: 20px;
+
+    & > p {
+        margin-bottom: 10px;
+    }
 }
 
 body {
-    background-color: $body-bg;
+    @extend .full-height;
+    background-color: $white;
+    font-family: $app-font;
 }
 
-md-toolbar.header {
-    background-color: $header-bg;
+#main-wrapper {
+    width: 100%;
+    height: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    position: relative;
+}
+
+section {
+    padding: 10px;
+    height: calc(100% - 60px);
+}
+
+header {
+    height: 60px;
+    background-color: $white;
     font-family: $title-font;
     font-weight: bold;
-    padding: 10px;
+    font-size: 24px;
+    padding: 0 20px;
+    box-shadow: 0 8px 16px 0 $shadow-gray;
+
+    h1 {
+        float: left;
+    }
 
     .green-text {
         color: $title-green;
@@ -23,5 +92,416 @@ md-toolbar.header {
 
     .red-text {
         color: $title-red;
+    }
+
+    .location-name {
+        position: relative;
+        float: right;
+        height: 100%;
+        line-height: 60px;
+        font-family: $app-font;
+        font-weight: normal;
+        font-size: 15px;
+        padding-right: 40px;
+    }
+
+    .location-name:before {
+        @extend .center-vertical;
+        right: 0;
+        content: ' ';
+        display: block;
+        width: 40px;
+        height: 50px;
+        background: url('../images/location-marker.svg') no-repeat center center;
+    }
+}
+/* Filter Group directive styles */
+.filter-group {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    max-height: 50px;
+    transition: max-height linear 0.3s;
+
+    &.expand {
+        max-height: 200px;
+        border-bottom: 1px solid $light-gray;
+        transform: translate3d(0, 0, 0);
+    }
+
+    &-autocomplete-container {
+        width: 100%;
+        height: 50px;
+        position: relative;
+        padding: 5px 55px 0 2px;
+    }
+
+    &-show-list {
+        @extend .center-vertical;
+        right: 5px;
+        margin: 0;
+        padding-top: 5px;
+
+        &.md-fab {
+            background-color: lighten($title-green, 5%);
+
+            &:not([disabled]) {
+                &.md-focused,
+                &:hover {
+                    background-color: $title-green;
+                }
+            }
+        }
+    }
+
+    &-selected-list {
+        width: 100%;
+        height: auto;
+        overflow: auto;
+        background-color: $white;
+        margin-top: 10px;
+        list-style: none;
+
+        li {
+            width: 32%;
+            height: 40px;
+            line-height: 36px;
+            border: 1px solid $light-gray;
+            border-radius: 3px;
+            padding-right: 40px;
+            padding-left: 7px;
+            margin: 0 5px 5px 0;
+            position: relative;
+            float: left;
+            overflow: hidden;
+
+            &:nth-of-type(3n + 3) {
+                margin-right: 0;
+            }
+
+            .md-button,
+            .text {
+                float: left;
+            }
+
+            .md-button {
+                @extend .center-vertical;
+                margin: 0;
+                right: 0;
+
+                path {
+                    transition: all 0.3s;
+                }
+
+                &:hover path {
+                    fill: lighten($title-red, 10%);
+                }
+            }
+        }
+    }
+}
+/* Truck List directive styles */
+.truck-list {
+    width: 100%;
+    height: 100%;
+
+    &-wrapper {
+        height: 100%;
+    }
+
+    &-container {
+        height: calc(100% - 50px);
+
+        .md-button:not([disabled]):hover {
+            background-color: $transparent;
+        }
+    }
+
+    &-item {
+        margin: 5px 0;
+    }
+
+    &-icon {
+        text-transform: uppercase;
+        background-color: $title-green;
+        color: $white;
+        text-align: center;
+        line-height: 40px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    &-title {
+        font-family: $title-font;
+        font-size: 20px;
+    }
+
+    .list-subtext {
+        font-size: 13px;
+    }
+
+    &-address:before {
+        @include before-icon( '../images/location-icon.svg', 25px, 25px);
+    }
+
+    &-hours:before {
+        @include before-icon( '../images/clock-icon.svg', 25px, 25px);
+    }
+}
+/* Truck Detail directive styles */
+.truck-detail {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    overflow: auto;
+    font-family: $app-font;
+    font-size: 15px;
+    line-height: 36px;
+
+    &-title {
+        font-family: $title-font;
+        font-size: 24px;
+    }
+
+    &-address:before {
+        @include before-icon( '../images/location-icon.svg', 25px, 25px);
+    }
+
+    &-hours:before {
+        @include before-icon( '../images/clock-icon.svg', 25px, 25px);
+    }
+
+    &-food-list {
+        .md-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 0;
+        }
+    }
+}
+/* Truck Map directive styles */
+truck-map {
+    height: 100%;
+}
+
+.truck-map {
+    margin-top: 15px;
+    height: 100%;
+
+    &-search {
+        &-container {
+            position: relative;
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            padding-right: 65px;
+            margin-bottom: 10px;
+        }
+
+        &-params {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+        }
+
+        &-range {
+            width: 50%;
+            float: left;
+            padding: 0 10px;
+            position: relative;
+
+            .slider-text {
+                position: absolute;
+            }
+
+            md-slider {
+                margin: 0 10px;
+
+                .md-slider-wrapper {
+                    padding-top: 17px;
+                }
+
+                &.md-min[md-discrete] {
+                    .md-thumb:after {
+                        background-color: $title-green;
+                    }
+
+                    .md-sign {
+                        background-color: $title-green;
+
+                        &:after {
+                            border-top-color: $title-green;
+                        }
+                    }
+                }
+
+                .md-track-ticks {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    &-autocomplete-container {
+        width: 50%;
+        float: left;
+        padding-right: 10px;
+    }
+
+    &-autocomplete {
+        width: 100%;
+        height: 50px;
+        float: left;
+        line-height: 40px;
+        padding: 5px;
+        margin-bottom: 10px;
+        border: 1px solid $light-gray;
+        box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+    }
+
+    &-search.md-fab {
+        @extend .center-vertical;
+        right: 5px;
+        width: 50px;
+        height: 50px;
+        margin: 0;
+        background-color: lighten($title-green, 5%);
+
+        &:not([disabled]) {
+            &.md-focused,
+            &:hover {
+                background-color: $title-green;
+            }
+        }
+    }
+
+    &-and-list-container {
+        width: 100%;
+        height: calc(100% - 75px);
+        position: relative;
+    }
+
+    &-container,
+    &-list-container {
+        width: 50%;
+        height: 100%;
+        float: left;
+    }
+
+    &-list-container {
+        padding-right: 10px;
+        position: static;
+    }
+
+    .md-sidenav-right {
+        width: 50%;
+        max-width: 10000px;
+        padding-left: 40px;
+    }
+
+    .md-icon-button.close-detail {
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        left: 5px;
+    }
+
+    .show-list {
+        display: none;
+        background-color: $title-red;
+    }
+}
+/* Loader directive styles */
+.loader {
+    width: 100%;
+    height: calc(100% - 60px);
+    position: absolute;
+    top: 60px;
+    background-color: $white;
+    z-index: 100;
+
+    .loader-container {
+        width: 200px;
+        height: 145px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .wheel {
+        fill: $wheel;
+    }
+
+    .truck {
+        fill: $truck;
+    }
+
+    .bowl {
+        fill: $title-red;
+    }
+
+    .steam {
+        fill: $steam;
+        animation: steam 2s infinite;
+    }
+
+    .man {
+        fill: $man;
+    }
+
+    .bowl,
+    .man,
+    .truck {
+        animation: jerk 0.5s infinite;
+    }
+    @keyframes steam {
+        0% {
+            transform: translate3d(0, 0, 0);
+            opacity: 1;
+        }
+
+        50% {
+            transform: translate3d(-2px, -2px, 0);
+        }
+
+        100% {
+            transform: translate3d(4px, -2px, 0);
+            opacity: 0;
+        }
+    }
+    @keyframes jerk {
+        0% {
+            transform: translate3d(0, 0, 0);
+        }
+
+        0% {
+            transform: translate3d(0, -2px, 0);
+        }
+
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+}
+
+/* Material Override */
+.md-chips {
+    font-family: $app-font;
+
+    .md-chip-input-container {
+        width: 100%;
+    }
+}
+
+input {
+    font-family: $app-font;
+}
+
+.md-virtual-repeat-container {
+    height: 100%;
+
+    .md-virtual-repeat-offsetter {
+        padding: 0 5px 40px;
     }
 }
