@@ -9,7 +9,7 @@
             <div>{{ item }}</div>
         </md-list-item>
     </md-list>
-    <md-whiteframe class="md-whiteframe-3dp">
-        <span>Well, the kitchen ran in to some trouble. I guess you can just call it a truck now.</span>
-    </md-whiteframe>
+    <div class="error-card" ng-if="!selectedTruck.fooditems.length">
+        Well, the kitchen ran in to some trouble. I guess you can just call it a truck now.
+    </div>
 </div>

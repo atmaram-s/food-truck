@@ -12,8 +12,8 @@
                   <div class="md-list-item-text"
                       layout="column">
                       <div class="truck-list-title">{{ foodTruckDetail.applicant }}</div>
-                      <div class="truck-list-address list-subtext">{{ foodTruckDetail.address }}</div>
-                      <div class="truck-list-hours list-subtext">{{ foodTruckDetail.dayshours}}</div>
+                      <div class="truck-list-address list-subtext" ng-if="foodTruckDetail.address">{{ foodTruckDetail.address }}</div>
+                      <div class="truck-list-hours list-subtext" ng-if="foodTruckDetail.dayshours">{{ foodTruckDetail.dayshours}}</div>
                   </div>
               </md-list-item>
           </md-virtual-repeat-container>
